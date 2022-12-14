@@ -1,0 +1,715 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+/* 기본설정 */
+.hidden{
+  width:1px; height:1px; font-size:0px; line-height:0px;
+  position:absolute;
+}
+body{
+  /* font-family: 'Noto Sans KR', sans-serif; */
+  font-family: 'NanumSquare', sans-serif !important;
+  font-size: 14px;
+  color: #4e4e4e;
+  line-height: 1.4;
+}
+
+/* reset */
+* {margin: 0;padding: 0;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td{margin:0;padding:0;}
+h1, h2, h3, h4, h5, h6 {font-weight: 700; font-size: inherit;}
+a {color: inherit; text-decoration: inherit;}
+img {vertical-align: middle;}
+a img {border: none;}
+li {list-style: none;}
+address, em, i {font-style: normal;}
+a:focus {outline: none}
+button:focus {outline: none}
+
+/* layout */
+.wrap{
+  width: 100%; min-width: 1100px; 
+  /* min-width: 1100px; 1100까지는 지금레이아웃을 유지한다 */
+  overflow: hidden;
+}
+header{
+  width: 100%; height: 120px;
+  line-height: 120px;
+  padding: 0 60px; box-sizing: border-box;
+  position: fixed; z-index: 1000;
+  /* background: red; */
+}
+header .logo{
+  font-size: 42px; font-weight: 900; letter-spacing: -6px;
+  color: #39312b; 
+  float: left;
+}
+header .gnb{
+  float: right;
+}
+header .gnb li{
+  float: left; margin-left: 60px;
+}
+header .gnb li a{
+  display: block;
+  font-size: 18px; text-transform: uppercase;
+  position: relative;
+}
+header .gnb li a::after{
+  content: "";
+  width: 0%; height: 1px;
+  position: absolute; left: 50%; bottom: 46px; 
+  transform: translateX(-50%); transition: all 0.5s;
+  background: #888;
+}
+header .gnb li a:hover::after, header .gnb li a:focus::after{
+  width: 100%;
+}
+
+/* visual */
+section.visual{
+  margin-top: 120px; padding-bottom: 50px;
+  position: relative;
+}
+section.visual::before{
+  content: "";
+  width: 53%; height: 400px;
+  position: absolute; bottom: 0; right: 0;
+  background: #f0f0f0;
+}
+section.visual .img{
+  width: 94%;
+  position: relative;
+}
+section.visual .img img{
+  width: 100%;
+}
+section.visual .img .imgBox{
+  display: block;
+  width: 100%; height: 100%; overflow: hidden;
+}
+/* scale ani */
+@keyframes scale_ani{
+  0%{transform: scale(1.3);}
+  10%{transform: scale(1.3);}
+}
+section.visual .slick-active .imgBox img{
+  transform: scale(1);
+  animation-name: scale_ani; animation-duration: 5.2s;
+}
+
+
+
+
+
+/* mask */
+section.visual .img .mask{
+  display: block; 
+  position: absolute; top: 0; width: 1px; height: 100%;
+  background: rgba(255,255,255,0.16);
+}
+section.visual .img .mask.a{
+  left: 0; 
+}
+section.visual .img .mask.b{
+  left: 25%; 
+}
+section.visual .img .mask.c{
+  left: 50%; 
+}
+section.visual .img .mask.d{
+  left: 75%; 
+}
+/* ani */
+@keyframes mask_ani{
+  0%{width: 25%; background: #000;}
+  50%{width: 25%; background: #000;}
+  99%{background: #000;}
+}
+section.visual .slick-active .img .mask.a{
+  animation-name: mask_ani; animation-duration: 0.4s;
+}
+section.visual .slick-active .img .mask.b{
+  animation-name: mask_ani; animation-duration: 0.6s;
+}
+section.visual .slick-active .img .mask.c{
+  animation-name: mask_ani; animation-duration: 0.8s;
+}
+section.visual .slick-active .img .mask.d{
+  animation-name: mask_ani; animation-duration: 1s;
+}
+/* 슬릭js적용후 개발자도구로 .slick-active를 찾아주고 애니매이션적용 */
+
+
+/* 페이지숫자이미지 */
+section.visual .img .page{
+  position: absolute; right: -43px; top: 50%; transform: translateY(-50%);
+}
+section.visual .title{
+  position: absolute; left: 8%; top: 40%;
+  color: #fff;
+}
+section.visual .title h2{
+  font-size: 50px; 
+  margin-bottom: 30px;
+}
+section.visual .title p{
+  font-size: 20px; font-weight: 300;
+}
+
+@keyframes slide-up{
+  0%{opacity: 0;}
+  40%{opacity: 0; transform: translateY(40px);}
+}
+section.visual .slick-active .title h2{
+  animation-name: slide-up; animation-duration: 1.5s;
+}
+section.visual .slick-active .title p{
+  animation-name: slide-up; animation-duration: 2.2s;
+}
+section.visual .slick-active .title .menu{
+  animation-name: slide-up; animation-duration: 2.8s;
+}
+/* 비쥬얼이 슬릭액티브 되고난후에 타이틀의 애니메이션은~~ 이라는뜻 */
+
+
+
+
+/* menu */
+section.visual .menu{
+  position: absolute; left: 8%; bottom: 15%;
+}
+section.visual .menu li{
+  float: left; margin-right: 60px;
+}
+section.visual .menu li a{
+  display: block; color: #fff;
+}
+section.visual .menu li a p{
+  float: left;
+  font-size: 20px; font-weight: bold;
+}
+section.visual .menu li a p > span{
+  display: block; 
+  font-weight: 100; font-size: 15px; color: #aaa;
+}
+section.visual .menu li a .arrow{
+  display: block; 
+  float: right;
+  margin-top: 10px; margin-left: 20px;
+
+  position: relative; z-index: 1;
+}
+section.visual .menu li a .arrow::before{
+  content: "";
+  width: 40px; height: 40px;
+  background: rgba(252,252,252,0.4);
+  position: absolute; top: -10px; right: -10px;
+  z-index: -1; transition: all 0.2s;
+}
+
+/* hover */
+section.visual .menu li a:hover .arrow::before, section.visual .menu li a:focus .arrow::before{
+  top: 0; right: 0;
+}
+
+
+
+
+
+/* slick-dots */
+.slick-dots{
+  position: absolute; right: 4.5%; bottom: 30px;
+}
+.slick-dots li button{
+  width: 12px; height: 12px;
+  background: #ccc;
+  border: none; 
+  cursor: pointer; 
+  /* cursor: pointer; 버튼에 커서 생기게 하는방법 */
+  margin-bottom: 15px; 
+  text-indent: -999999px;
+  /* text-indent: -999999px; 버튼의 숫자를 지울수없어서 영역밖으로 보내버림*/
+}
+.slick-dots li.slick-active button{
+  background: #888;
+}
+
+
+/* section.about */
+.about{
+  width: 95%; margin: 40px auto;
+  text-align: center;
+  position: relative;
+}
+.about img{
+  width: 100%;
+}
+.about .inner{
+  width: 100%; 
+  position: absolute; top: 50%; left: 50%; 
+  transform: translate(-50%, -50%);
+}
+.about .inner h2{
+  font-size: 30px;
+  color: #fff; font-weight: normal;
+}
+.about .inner .line{
+  width: 35%; 
+  position: relative;
+  margin: 80px auto 30px;
+}
+.about .inner .line span{
+  display: block; width: 100%; height: 1px;
+  background: rgba(255,255,255,0.25);
+}
+.about .inner .line li{
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+}
+.about .inner .line li.a{
+  left: 0; top: -2px;
+}
+.about .inner .line li.b{
+  left: 50%; top: -2px;
+  transform: translateX(-50%);
+}
+.about .inner .line li.c{
+  right: 0; top: -2px;
+}
+.about .inner .line li::before{
+  content: ""; width: 100%; height: 100%;
+  position: absolute; left: 50%; top: 50%;
+  margin-top: -3px; margin-left: -3px;
+  border-radius: 50%; 
+  background: rgba(255,255,255,0.7);
+
+  animation: dot 1.5s infinite; 
+}
+/* animation-iterration-count :infinite는 무한반복애니메이션 */
+
+.about .inner ul{
+  width: 60%; margin: 0 auto;
+}
+.about .inner ul li{
+  width: 33.3333%; font-size: 16px;
+  font-weight: 100;
+  color: #c5c5c5; float: left;
+}
+.about .inner ul li h3{
+  font-size: 18px; font-weight: normal;
+  margin-bottom: 20px;
+}
+
+/* ani */
+@keyframes dot {
+  100%{opacity: 1; transform: scale(3.5); opacity: 0;}
+}
+@keyframes slide-up2{
+  0%{opacity: 0;}
+  70%{opacity: 0; transform: translateY(40px);}
+}
+@keyframes opacity-ani{
+  0%{opacity: 0;}
+  70%{opacity: 0;}
+}
+
+.about .inner.motion h2{
+  animation-name: slide-up2; animation-duration: 0.8s;
+}
+.about .inner.motion .line span{
+  animation-name: opacity-ani; animation-duration: 1s;
+}
+.about .inner.motion .line li.a{
+  animation-name: opacity-ani; animation-duration: 1.2s;
+}
+.about .inner.motion .line li.b{
+  animation-name: opacity-ani; animation-duration: 1.6s;
+}
+.about .inner.motion .line li.c{
+  animation-name: opacity-ani; animation-duration: 2s;
+}
+
+.about .inner.motion ul li{
+  animation-name: slide-up2; animation-duration: 2.4s;
+}
+.about .inner.motion ul li:nth-child(2){
+  animation-name: slide-up2; animation-duration: 2.8s;
+}
+.about .inner.motion ul li:nth-child(3){
+  animation-name: slide-up2; animation-duration: 3.2s;
+}
+
+
+
+/* section.premium */
+.premium{
+  width: 95%; height: 1020px;
+  margin: 40px auto;
+  padding: 100px 0; box-sizing: border-box; position: relative;
+  background: url(../img/con2_bg.jpg) no-repeat center/cover;
+}
+.premium .txtImg{
+  width: 100%;
+  position: absolute; left: 0; top: 20%;
+  display: block; overflow: hidden;
+}
+.premium .title{
+  position: absolute; left: 8%; top: 35%;
+}
+.premium .title h2{
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.premium .title p{
+  font-size: 19px; line-height: 1.6; margin-bottom: 30px;
+}
+.premium .title a{
+  font-size: 24px;
+  display: inline-block;
+}
+.premium .title a::before{
+  content: "";
+  position: absolute; bottom: 0; left: 0;
+  transition: all 0.3s;
+  width: 80px; height: 15px; background: rgba(0,0,0,0.1);
+}
+.premium .title a:hover::before,.premium .title a:focus:before{
+  width: 0;
+}
+
+@keyframes widthAni{
+  0%{width: 0%;}
+  40%{width: 0%;}
+  100%{width: 100%;}
+}
+.premium .txtImg.motion{
+  animation-name: widthAni; animation-duration: 2.5s;
+}
+
+
+
+
+
+/* premium banner */
+.premium .banner li{
+  position: absolute; box-shadow: 5px 6px 15px rgba(3,3,3,0.4);
+  width: 15%;
+}
+.premium .banner li img{
+  width: 100%;
+}
+.premium .banner li:nth-child(1){
+  left: 45%; top: 15%;
+  z-index: 1;
+}
+.premium .banner li:nth-child(2){
+  left: 37%; top: 50%;
+  z-index: 1;
+}
+.premium .banner li:nth-child(3){
+  left: 55%; top: 62%;
+  z-index: 1;
+}
+.premium .banner li:nth-child(4){
+  right: 2%; width: 32%; max-width: 580px;
+}
+/* ani */
+.premium .banner li:nth-child(1).motion{
+  animation-name: slide-up; animation-duration: 1.2s;
+}
+.premium .banner li:nth-child(2).motion{
+  animation-name: slide-up; animation-duration: 1.8s;
+}
+.premium .banner li:nth-child(3).motion{
+  animation-name: slide-up; animation-duration: 2.2s;
+}
+.premium .banner li:nth-child(4).motion{
+  animation-name: slide-up; animation-duration: 1.5s;
+}
+
+
+
+/* global */
+.global{
+  width: 95%; margin: 40px auto 0; padding: 40px 0;
+  text-align: center; position: relative;
+}
+.global::before{
+  content: ""; width: 100%; height: 45%;
+  position: absolute; left: 0; bottom: 0; z-index: -1;
+  background: #eee;
+}
+.global .title h2{
+  font-size: 30px; margin-bottom: 20px;
+}
+.global .title p{
+  font-size: 18px; line-height: 1.4; 
+  margin-bottom: 50px;
+}
+.global ul{
+  width: 100%;
+  overflow: hidden; padding-top: 50px;
+}
+.global ul li{
+  width: 25%; padding: 15px; box-sizing: border-box;
+  float: left;
+}
+.global ul li:nth-child(1), .global ul li:nth-child(3){
+  margin-top: -50px;
+}
+.global ul li a{
+  display: block;
+  width: 100%; height: 100%;
+}
+.global ul li a .img{
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+  position: relative; transition: all 0.2s;
+}
+.global ul li a .img img{
+  width: 100%;
+}
+.global ul li a .img::after{
+  content: "VIEW";
+  width: 100%; height: 100%;
+  background: rgba(44, 35, 28, 0.8);
+  position: absolute; left: 0; top: 0;
+  font-size: 22px; color: #d4d4d4;
+  padding-top: 200px; box-sizing: border-box;
+  opacity: 0; transition: all 0.2s;
+}
+.global ul li a:hover .img, .global ul li a:focus .img{
+  transform: translate(-8px, -8px);
+  box-shadow: 15px 18px 18px rgba(0, 0, 0, 0.35);
+}
+.global ul li a:hover .img::after, .global ul li a:focus .img::after{
+  /* a에 호버효과줄때 꼭 focus주기 */
+  opacity: 1;
+}
+.global ul li a h3{
+  font-size: 22px; margin: 40px 0 15px;
+}
+.global ul li a h3 span{
+  display: block; 
+  font-size: 18px; font-weight: normal; color: #888;
+}
+.global ul li a h3 p{
+  font-size: 17px;
+}
+/* animation */
+.global.motion ul li:nth-child(1){
+  animation-name: slide-up; animation-duration: 1s;
+}
+.global.motion ul li:nth-child(2){
+  animation-name: slide-up; animation-duration: 1.4s;
+}
+.global.motion ul li:nth-child(3){
+  animation-name: slide-up; animation-duration: 1.8s;
+}
+.global.motion ul li:nth-child(4){
+  animation-name: slide-up; animation-duration: 2.2s;
+}
+
+
+
+/* footer */
+footer{
+  padding: 80px 0 0;
+  text-align: center;
+}
+footer .sns li{
+  display: inline-block; margin: 15px;
+}
+footer .footerLogo{
+  font-size: 40px; font-weight: 900; letter-spacing: -6px;
+  color: #39312b;
+  margin: 40px auto 20px;
+}
+footer ul li{
+  font-size: 17px; line-height: 1.4;
+}
+footer ul li .copyright{
+  font-size: 15px; font-weight: 100;
+  color: #888; display: block;
+  margin-top: 20px;
+}
+footer .box{
+  padding: 150px 0;
+  background: url(../img/bottom_bg.jpg) no-repeat center/cover;
+  margin-top: 80px;
+}
+footer .box h2{
+  color: #fff; font-size: 22px; font-weight: normal;
+}
+/* animation */
+footer .box.motion h2{
+  animation-name: slide-up; animation-duration: 1s;
+}
+
+
+/*모바일 네비 추가*/
+header .open {display: none;}
+header .close {display: none;}
+
+/*모바일용 줄바꿈*/
+br.mo {display: none;}
+
+/*반응형 시작*/
+/*테블릿모드 : 1100px이하~ 951px*/
+@media screen and (max-width:1100px){
+  .wrap {min-width: 100%;}
+  
+  /*header*/
+  header {height: 60px; line-height: 60px;padding:0 10px;}
+  header .open {display: block; float: right;font-size: 32px; height: 60px; padding-top: 5px; box-sizing: border-box;}
+  header .bg {width: 100%; height: 100vh; background: rgba(0,0,0,0.6); display: block; position: absolute; top:0; left: 0; z-index: 200; display: none;}
+  header .logo {font-size: 30px; letter-spacing: -4px;}
+  header nav{background: #fff; width: 0; height: 100vh; position: absolute; right: 0; top:0; overflow: hidden; transition: width 0.3s; z-index:300; }
+  header nav.on {width: 70%; max-width: 300px; }
+  header nav .close {display: block; position: absolute; right: 10px; top:0; font-size: 35px; padding-top: 5px; box-sizing: border-box;}
+  
+  
+  header nav .gnb {margin-top: 100px;}
+  header nav .gnb li {display: block; width: 100%; margin:0; line-height: 60px;}
+  header nav .gnb li a {width: 100%; padding-left: 30px; box-sizing: border-box;font-size:20px; }
+  header nav .gnb li a:after {display: none;}
+  
+  /*visual*/
+  section.visual {margin-top: 60px;}
+  section.visual .img img {height: 100%; width: auto;}
+  section.visual .title {left: 5%;}
+  section.visual .menu {width: 100%; left: 5%;}
+  section.visual .menu li {margin-right: 30px;}
+  section.visual .menu li a p {font-size: 17px;}
+  .slick-dots {right: 2.5%;}
+  
+  /*about*/
+  section.about {width: 100%; height: 600px;}
+  section.about img{height: 100%; width: auto;}
+  section.about .inner .line {width: 40%;}
+  section.about .inner ul {width: 80%;}
+  section.about .inner ul li {width: 50%;}
+  section.about .inner ul li:nth-child(3){margin-left: 25%;}
+  
+  /*premium*/
+  section.premium {width: 100%; height:800px;}
+  section.premium .title {left: 5%;}
+  section.premium .txtImg{left: 5px;}
+  
+  /*global*/
+  section.global {width: 100%;}
+  section.global ul li {padding: 10px;}
+  section.global ul li a p {font-size: 15px;}
+  section.global ul li a .img:after {display: none;}     
+}
+
+/*950px 이하 - 751px 테블릿 참고*/
+@media screen and (max-width:950px){
+  /*visual */
+  section.visual .menu {display: none; width: 0; height: 0;}
+  section.visual .img {width: 92%;}
+  
+  /*about*/
+  section.about {height: 480px;}
+  section.about .inner .line {width: 60%;}
+  section.about .inner ul{width: 95%;}
+  section.about .inner ul li{width: 33.3333%; font-size: 12px;}
+  section.about .inner ul li:nth-child(3){margin-left: 0;}
+  
+  /*premium*/
+  section.premium .title {width: 100%; left: 0; top:20px; text-align: center;}
+  section.premium .txtImg {height: 60px; left: 20px; top:28%;}
+  section.premium .txtImg img {height: 100%;}
+  section.premium .banner {position:relative; width: 80%; left: 50%; transform: translateX(-50%);top:30%; height: 500px;}
+  section.premium .banner li:nth-child(1).motion {left: 15%; width: 22%;}
+  section.premium .banner li:nth-child(2).motion {left: 8%; width: 22%;}
+  section.premium .banner li:nth-child(3).motion {left: 38%; width: 22%;}
+  section.premium .banner li:nth-child(4).motion {left: 50%; width: 48%;}
+  
+  /*global*/
+  section.global .title h2 {font-size: 20px;}
+  section.global .title p {font-size: 13px;}
+  section.global ul {width: 95%; margin: auto;}
+  section.global.motion ul li {width: 50%; margin-bottom: 20px;}
+  section.global ul li a h3 {font-size: 16px; margin: 20px 0 10px;}
+  section.global ul li a h3 span {font-size: 12px;}
+  section.global ul li a p{font-size: 10px;}  
+  section.global:before {height: 48%;}
+  
+  /*footer*/
+  footer {padding-top: 50px;}
+  footer .sns li:last-child {margin-right: 0;}
+  footer .footerLogo {font-size: 28px; letter-spacing: -4px;}
+  footer ul li {font-size:13px; }
+  footer ul li .copyright {font-size: 13px; margin-top: 10px;} 
+  footer .box {padding: 80px 0;}
+  footer .box.motion h2{font-size: 17px;}  
+}
+/* 750px 이하 - 모바일 디바이스 체크 */  
+@media screen and (max-width:750px){
+  /*visual*/
+  section.visual {height: 80vh; overflow: hidden;}
+  section.visual .img {width: 87%;}
+  section.visual .img img {height: 80vh; width:auto;}
+  section.visual .img .page img {width: 75%; height: auto;margin-left: 8%;}
+  br.mo {display: block;}
+  section.visual .title h2{font-size: 29px;}
+  section.visual .title p{font-size: 14px;}
+  .slick-dots{right: 20px;}
+  
+  /*about*/
+  section.about .inner.motion h2 {font-size: 20px; margin-bottom: 10px;}
+  section.about .inner .line {display: none;}
+  section.about .inner ul li {width: 100%;margin: 20px 0 0;font-size: 13px;}
+  section.about .inner ul li h3 {font-size: 16px; margin-bottom: 8px;}
+  
+  /*premium*/
+  section.premium {height: 685px;}
+  section.premium .title h2{font-size: 20px;}
+  section.premium .title p {font-size: 13px; margin-bottom: 20px;}
+  section.premium .title a {font-size: 18px;}
+  section.premium .title a:before {width: 60px;height: 12px;}
+  section.premium .txtImg {left: 0; height: 32px; text-align: center;}
+  section.premium .banner {height: 400px; width: 100%;}
+  section.premium .banner li:nth-child(1).motion {left: 10%;}
+  section.premium .banner li:nth-child(2).motion {left: 5%;}
+  section.premium .banner li:nth-child(3).motion {left: 42%;}
+  section.premium .banner li:nth-child(4).motion {left: 44%;top: -5%;}
+}
+/* 320px 이하  - 280px  체크 - 개발자도구에서 갤럭시 폴드 기종 추가 */ 
+@media screen and (max-width:320px){
+  section.visual .title h2 {font-size: 22px;}
+  section.visual .title p {font-size: 11px;}
+  section.visual .img .page img {width: 55%; margin-left: 15%;}
+  .slick-dots li button {height: 8px;margin-bottom: 15px;}
+
+  /*about*/
+  section.about {height: 480px;}
+  section.about .inner.motion h2 {font-size: 16px;}
+  section.about .inner ul li h3 {font-size: 14px;}
+  section.about .inner ul li {font-size: 11px;}
+  
+  /*premium*/
+  section.premium {height: 600px;}
+  section.premium h2 {font-size: 16px;}
+  section.premium p {font-size: 11px;}
+  section.premium .banner {height: 350px;}
+  section.premium .txtImg.motion {top:33%;}
+  section.premium .banner {top:38%;}
+  section.premium .banner li:nth-child(1).motion {width: 25%;}
+  section.premium .banner li:nth-child(2).motion {width: 25%;}
+  section.premium .banner li:nth-child(3).motion {width: 25%;}
+  
+  /*global*/
+  section.global .title h2{font-size: 16px;}
+  section.global .title p {font-size: 11px;}
+  section.global ul li a h3 {font-size: 13px; }
+  
+  /*footer*/
+  footer ul li {font-size: 10px;}
+  footer .box  {padding: 50px 0;}
+  footer .box.motion h2 {font-size: 14px;}  
+}
+
